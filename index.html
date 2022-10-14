@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dylan Jansen</title>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/glslCanvas@0.1.7/dist/GlslCanvas.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="reader.js"></script>
+
+        <!-- Animation Styling -->
+        <style>
+            @keyframes fade-in {
+                from { opacity: 0.0; }
+                to { opacity: 1.0; }
+            }
+            @keyframes fade-in2 {
+                from { opacity: 0.0; }
+                to { opacity: 0.9; }
+            }
+            
+            #msg-bg {
+                animation: fade-in2 2s linear 2s 1 forwards;
+                opacity: 0;
+            }
+
+            #hello-msg {
+                animation: fade-in 1s linear 5s 1 forwards;
+                opacity: 0;
+            }
+
+            #pre-name-msg {
+                animation: fade-in 1s linear 7.4s 1 forwards;
+                opacity: 0;
+            }
+            
+            #name-msg {
+                animation: fade-in 2s linear 8.5s 1 forwards;
+                opacity: 0;
+            }
+          
+            #post-name-msg {
+                animation: fade-in 2s linear 11.2s 1 forwards;
+                opacity: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="w-full h-full">
+                        
+            <!-- Top-page Canvas and Content -->
+            <div id="canvas-container" class="w-full h-full fixed -z-10"></div>
+            
+            <div id="top-page" class="flex flex-col w-full h-screen">
+                <div id="msg-bg" class="m-auto px-6 py-4 rounded-xl bg-gray-800">
+                    <p id="hello-msg" class="inline align-bottom text-white text-xl w-52">Hello,</p>
+                    <p id="pre-name-msg" class="inline align-bottom text-white text-xl w-52">my name is</p>
+                    <p id="name-msg" class="inline align-middle text-center text-white text-5xl px-1">Dylan Jansen</p>
+                    <p id="post-name-msg" class="text-white text-2xl py-1" style="letter-spacing: 0.065em;">I'm a Gameplay & Shader Developer</p>
+                </div>
+                
+                <a onclick="scrollToPos('topPage')">
+                    <div class="absolute cursor-pointer" style="top: calc(100% - 80px); left: calc(50% - 25px); width: 50px; height: 50px;">
+                        <img src="media/scrolldown.png">
+                    </div>
+                </a>
+
+                <div class="absolute flex " style="top: calc(100% - 24px);">
+                    <a onclick="swapShaderContent(0)" class="cursor-pointer select-none">
+                        <div id="shaderPicker0" class="w-max h-6 pl-2 bg-gray-800">
+                            <p class="text-sm text-gray-200 pr-2 text-indigo-200">Basic</p>
+                        </div>
+                    </a>
+                    
+                    <a onclick="swapShaderContent(1)" class="cursor-pointer select-none">
+                        <div id="shaderPicker1" class="w-max h-6 pl-2 bg-gray-900">
+                            <p class="text-sm text-gray-200 pr-2 text-indigo-200">Polkadots</p>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+            
+            <!-- Navbar -->
+            <div id="navbar" class="h-12 z-50 bg-gray-900">
+                <div class="m-auto flex w-max h-full">
+                    <a href="">
+                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
+                            <p class="text-white px-8">Top</p>
+                        </div>
+                    </a>
+
+                    <a href="">
+                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
+                            <p class="text-white px-8">Skills</p>
+                        </div>
+                    </a>
+
+                    <a href="">
+                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
+                            <p class="text-white px-8">Work</p>
+                        </div>
+                    </a>
+
+                    <a href="">
+                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
+                            <p class="text-white px-8">Socials</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- About Me -->
+            <div id="about-me" class="w-full pb-20 bg-gray-800 bg-opacity-95 text-white"> 
+                <div class="border-50">
+                    <p class="text-center text-5xl py-10">About me!</p>
+                </div>
+            
+                <div class="flex mx-10 2xl:m-auto 2xl:w-1/2">
+
+                    <div class="flex-none overflow-hidden rounded-full mx-8" style="width: 200px; height: 200px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ToddHoward2010sm_%28cropped%29.jpg/1200px-ToddHoward2010sm_%28cropped%29.jpg" alt="Photo of me">
+                    </div>
+
+                    <div class="mx-8">
+                            
+                        <p class="text-justify"> In in purus sed orci pulvinar volutpat. Aenean vitae feugiat arcu, et vulputate nunc. Nulla facilisi. Nulla bibendum consequat elit, in convallis neque rhoncus non. Quisque porta mauris eros, eu varius dui facilisis in. Ut ac ligula aliquam, posuere sem eu, dictum risus. Quisque non dapibus orci, vitae porta neque. Sed at dui nunc. Etiam euismod gravida purus eu pulvinar.
+
+                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent tempus eros eget lectus dictum elementum. Quisque ultrices diam eget nisi sagittis, et semper neque lacinia. Morbi gravida libero dolor, vitae pellentesque massa accumsan eget. Cras at venenatis leo, ac interdum lectus. Ut quis leo vel odio laoreet placerat pretium vitae enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur in eleifend massa. Donec ac eros nec urna aliquam accumsan et eu urna. Integer tempor elit eget ornare venenatis. Duis id tellus lobortis, cursus est at, tincidunt dui.</p>
+
+                    </div>
+                        
+                </div>
+            </div>
+
+            <!-- Skill Buttons -->
+            <div class="w-full bg-gray-700 bg-opacity-80 text-white"> 
+                <div>
+                    <p class="text-center text-5xl py-10">I am skilled in:</p>
+                </div>
+            
+                <div class="flex w-max m-auto">
+                    <a id="skillButton0" class="lg:mx-10 px-10 py-20 hover:bg-gray-500 cursor-pointer" onclick="showCategory(0)">
+                        <div class="relative">                      
+                            <img class="h-40 w-40" src="media/godot.png" alt="Godot Logo">
+                            <img id="skillWedge0" class="m-auto absolute h-10 w-10 hidden" style="left: calc(50% - 20px); bottom: -88px;" src="media/tri.png" alt="wedge">
+                        </div>
+                    </a>
+                
+                    <a id="skillButton1" class="lg:mx-10 px-10 py-20 hover:bg-gray-500 cursor-pointer" onclick="showCategory(1)">
+                        <div class="relative">                      
+                            <img class="h-40 w-40" src="media/unity.png" alt="Unity Logo">
+                            <img id="skillWedge1" class="m-auto absolute h-10 w-10 hidden" style="left: calc(50% - 20px); bottom: -88px;" src="media/tri.png" alt="wedge">
+                        </div>
+                    </a>
+                    
+                    <a id="skillButton2" class="lg:mx-10 px-10 py-20 hover:bg-gray-500 cursor-pointer" onclick="showCategory(2)">
+                        <div class="relative">                      
+                            <img class="h-40 w-40" src="media/unreal.png" alt="Unreal Engine Logo">
+                            <img id="skillWedge2" class="m-auto absolute h-10 w-10 hidden" style="left: calc(50% - 20px); bottom: -88px;" src="media/tri.png" alt="wedge">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Skill Content -->
+            <div class="text-white text-justify">
+                <div class="w-full bg-opacity-80 bg-gray-700">
+                    <div id="skillContainer" class="m-auto p-10 z-10 bg-gray-600 hidden rounded-xl" style="width:calc(50% + 180px);">
+                        <p id="skillTitle0" class="text-6xl mb-10 hidden">Godot 4</p>
+
+                        <p id="skillContent0" class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus commodo venenatis. In posuere finibus quam et commodo. Ut sollicitudin vitae dui ac ultricies. Etiam tristique libero eu lorem sollicitudin, sit amet placerat ante laoreet. Maecenas libero ligula, dapibus eget risus sed, ullamcorper euismod ante. Proin pulvinar arcu id erat finibus, quis molestie mauris pretium. Mauris malesuada, felis id iaculis tempus, libero justo maximus turpis, vel viverra leo mi ac quam. Morbi et odio porta, feugiat mauris non, convallis turpis. Nam aliquet vulputate diam, a mollis quam. Nam in mi dignissim orci fermentum porta nec sit amet dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum accumsan euismod tortor at porttitor. Ut arcu nisi, posuere at lorem dictum, semper sodales ligula. Aenean eu est lacus. Nulla consectetur ut lacus non commodo. Curabitur vitae lorem malesuada neque aliquam blandit.</p>
+                    
+                        <p id="skillTitle1" class="text-6xl mb-10 hidden">Unity 2021LTS</p>
+                        
+                        <p id="skillContent1" class="hidden">Praesent magna erat, sagittis sit amet lacus eget, vestibulum maximus leo. Phasellus posuere sapien justo, nec maximus dui sodales ut. Nulla rhoncus dictum pretium. Nullam id est dolor. Integer porttitor scelerisque blandit. Vestibulum et egestas turpis. Vivamus laoreet odio et mauris dignissim hendrerit. Duis at volutpat sapien, at mattis ex. Cras augue felis, volutpat a rutrum eu, tempus quis nisi. Cras sapien arcu, gravida et fermentum a, ullamcorper vitae arcu. Duis ut mi condimentum, dignissim eros ut, sollicitudin elit. Vestibulum laoreet posuere consectetur. Duis nec dictum elit. Etiam feugiat ante eu ante accumsan, non mollis nibh aliquam. Phasellus vehicula libero sit amet turpis mattis, vel auctor sapien feugiat.</p>
+                        
+                        <p id="skillTitle2" class="text-6xl mb-10 hidden">Unreal Engine 5</p>
+
+                        <p id="skillContent2" class="hidden">Proin rhoncus nulla odio, id fermentum urna tempor et. Cras egestas augue suscipit mollis lobortis. Ut elementum mauris nec molestie aliquam. Nulla quis ex at nulla sollicitudin semper sit amet quis lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas euismod odio sem, id fermentum lacus sollicitudin quis. Vestibulum id erat vitae massa scelerisque tempor. Sed placerat laoreet semper. Vivamus sed feugiat lacus. Curabitur nunc justo, bibendum in gravida a, sagittis ut odio. Curabitur maximus interdum erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque rutrum, ligula sit amet ultricies venenatis, massa lectus bibendum nibh, sit amet facilisis sem augue a quam. Curabitur magna diam, sodales sit amet pretium ac, fermentum at sapien. Aenean convallis tortor vel diam pulvinar condimentum.</p>
+                    </div>
+                </div>
+
+                <div id="skillBottomPad" class="pb-5 bg-gray-700 bg-opacity-80">
+                    <p id="skillDefault" class="text-2xl text-center">Click on an icon for more info!</p>
+                </div>
+            </div>
+
+            <!-- Fill -->
+            <div class="w-full text-white bg-gray-800 bg-opacity-95">
+                <div class="">
+                    <p class="text-center text-5xl py-10">Heres some of my work:</p>
+                </div>
+            </div>
+            
+            <div class="w-full h-96 bg-gray-800 bg-opacity-95">               
+                
+            </div>
+
+            <div class="w-full h-96 bg-gray-800 bg-opacity-95">               
+                
+            </div>
+        </div>
+        
+
+        <script>
+        var canvas = document.createElement("canvas");
+        var shaderDisplay = new GlslCanvas(canvas);
+        
+        class IndexPostReader extends PostReader {
+            postRead(str) {
+                shaderDisplay.load(str);
+            }
+        }
+        postReader = new IndexPostReader();
+        
+
+        // Creates and initializes shader canvas after site loads
+        window.addEventListener('load', function () {
+            document.getElementById("canvas-container").appendChild(canvas);
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+
+            swapShaderContent(0);
+        })
+        
+
+        const navbar = document.getElementById("navbar");
+        
+        // Navbar follows user after passing it
+        window.addEventListener('scroll', function () {
+            if (document.documentElement.scrollTop > topPage.offsetHeight) {
+                navbar.style.position = "fixed"
+                navbar.style.top = "0px"
+                navbar.style.right = "0px"
+                navbar.style.bottom = "0px"
+                navbar.style.left = "0px"
+                
+                aboutMe.style.marginTop = "48px"
+            }
+            else {
+                navbar.style.position = "relative"
+                aboutMe.style.marginTop = "0px"
+            }
+        })
+        
+        
+        var selectedShaderIdx = -1;
+        
+        function swapShaderContent(idx) {
+            var files = ["placeholder.hlsl", "dots.hlsl"];
+            
+            for (var i = 0; i < 2; i++) {
+                var shaderPicker = document.getElementById("shaderPicker" + i);
+                
+                if (i == idx) {
+                    if (selectedShaderIdx == idx) {
+                        window.open("editor.html?file=" + files[i], "_self");
+                        break;
+                    }
+                    shaderPicker.style.backgroundColor =  "rgb(31, 41, 55)";
+                    
+                    var stringFragContent = loadFileAsString("shaders/" + files[i]);                    
+                    continue;
+                }
+                
+                shaderPicker.style.backgroundColor = "rgb(17, 24, 39)";
+            }
+            
+            selectedShaderIdx = idx;
+        }
+        
+
+        function scrollToPos(position) {
+            console.log(position);
+        }
+
+
+        var firstContentTrigger = false;
+        
+        function showCategory(idx) {
+            if (!firstContentTrigger) {
+                var skillDefault = document.getElementById("skillDefault");
+                skillDefault.style.display = "none";
+    
+                var skillDefault = document.getElementById("skillContainer");
+                skillDefault.style.display = "block";
+                
+                var skillBottomPad = document.getElementById("skillBottomPad");
+                skillBottomPad.style.paddingBottom = "60px";
+
+                firstContentTrigger = false
+            }
+
+            for (var i = 0; i < 3; i++) {
+                var button = document.getElementById("skillButton" + i);
+                var title = document.getElementById("skillTitle" + i);
+                var content = document.getElementById("skillContent" + i);
+                var wedge = document.getElementById("skillWedge" + i);
+
+                if (i == idx) {
+                    button.style.backgroundColor = "rgb(156, 163, 175)";
+                    title.style.display = "block";
+                    content.style.display = "block";
+                    wedge.style.display = "block";
+                }
+                else {
+                    button.style.backgroundColor = "";
+                    title.style.display = "none";
+                    content.style.display = "none";
+                    wedge.style.display = "none";
+                }
+            } 
+        }  
+
+
+        const topPage = document.getElementById("top-page");
+        const aboutMe = document.getElementById("about-me");
+        </script>
+
+    </body>
+
+</html>

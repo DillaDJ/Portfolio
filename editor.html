@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shader Editor</title>
+        <link type="text/css" rel="stylesheet" href="https://rawgit.com/patriciogonzalezvivo/glslEditor/gh-pages/build/glslEditor.css">
+        <script type="application/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslEditor/gh-pages/build/glslEditor.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+
+    <body>
+        
+        <body style="background-color: #272822;">
+            <div id="glsl_editor" class="w-screen h-screen"></div>
+        </body>
+        
+        <script src="reader.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            const glslEditor = new GlslEditor('#glsl_editor', { 
+                canvas_size: 500,
+                canvas_draggable: true,
+                theme: 'monokai',
+                multipleBuffers: true,
+                watchHash: true,
+                fileDrops: true,
+                menu: true
+            });
+
+           class EditorPostReader extends PostReader {
+               postRead(str) {
+                    glslEditor.setContent(str);
+               }
+            }
+            var postReader = new EditorPostReader();
+                        
+            // Loads shader in url search params and filters out nonshaders
+            window.addEventListener('load', function () {
+                const queryFile = "shaders/" + new URLSearchParams(window.location.search).get("file");
+                const regex = /shaders\/\w*\.hlsl/s;
+                let m = regex.exec(queryFile);
+     
+                if (m.length == 1) {
+                    glslEditor.setContent("Retrieving file...");
+                    loadFileAsString(m[0]);
+                }
+            })
+
+        </script>
+
+
+        </script>
+
+
+    </body>
+
+</html>
