@@ -87,7 +87,7 @@ void main() {
 	
 	vec2 sq = (1.0 / sq_size) * mod(scrolling_uv, sq_size);
 	float dots = 1.0 - 2.0 * distance(sq, vec2(0.5));
-	float dot_scaled = step(sq_inset, dots);
+	float dot_scaled = smoothstep(sq_inset - 0.05, sq_inset + 0.05, dots);
 	
 	// Mask creation and final coloring
 	float gradient_mask = bg_gradient_rotates_with_dots == 1 
