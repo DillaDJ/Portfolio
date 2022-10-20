@@ -18,27 +18,27 @@
             }
             
             #msg-bg {
-                animation: fade-in2 2s linear 2s 1 forwards;
+                animation: fade-in2 2s linear 1.5s 1 forwards;
                 opacity: 0;
             }
 
             #hello-msg {
-                animation: fade-in 1s linear 5s 1 forwards;
+                animation: fade-in 1s linear 4.5s 1 forwards;
                 opacity: 0;
             }
 
             #pre-name-msg {
-                animation: fade-in 1s linear 7.4s 1 forwards;
+                animation: fade-in 1s linear 6.2s 1 forwards;
                 opacity: 0;
             }
             
             #name-msg {
-                animation: fade-in 2s linear 8.5s 1 forwards;
+                animation: fade-in 2s linear 7.6s 1 forwards;
                 opacity: 0;
             }
           
             #post-name-msg {
-                animation: fade-in 2s linear 11.2s 1 forwards;
+                animation: fade-in 2s linear 9.2s 1 forwards;
                 opacity: 0;
             }
         </style>
@@ -55,7 +55,7 @@
                     <p id="hello-msg" class="inline align-bottom text-white text-xl w-52">Hello,</p>
                     <p id="pre-name-msg" class="inline align-bottom text-white text-xl w-52">my name is</p>
                     <p id="name-msg" class="inline align-middle text-center text-white text-5xl px-1">Dylan Jansen</p>
-                    <p id="post-name-msg" class="text-white text-2xl py-1" style="letter-spacing: 0.065em;">I'm a Gameplay & Shader Developer</p>
+                    <p id="post-name-msg" class="text-white text-center text-2xl py-1">I'm a Software Developer</p>
                 </div>
                 
                 <a onclick="scrollToPos('topPage')">
@@ -64,7 +64,7 @@
                     </div>
                 </a>
 
-                <div class="absolute flex " style="top: calc(100% - 24px);">
+                <div class="absolute flex" style="top: calc(100% - 24px);">
                     <a onclick="swapShaderContent(0)" class="cursor-pointer select-none">
                         <div id="shaderPicker0" class="w-max h-6 pl-2 bg-gray-800">
                             <p class="text-sm text-gray-200 pr-2 text-indigo-200">Basic</p>
@@ -83,27 +83,21 @@
             <!-- Navbar -->
             <div id="navbar" class="h-12 z-50 bg-gray-900">
                 <div class="m-auto flex w-max h-full">
-                    <a href="">
+                    <a onclick="scrollToPos(0)">
                         <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
                             <p class="text-white px-8">Top</p>
                         </div>
                     </a>
 
-                    <a href="">
+                    <a onclick="scrollToPos()">
                         <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
                             <p class="text-white px-8">Skills</p>
                         </div>
                     </a>
 
-                    <a href="">
+                    <a onclick="scrollToPos()">
                         <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
                             <p class="text-white px-8">Work</p>
-                        </div>
-                    </a>
-
-                    <a href="">
-                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600">
-                            <p class="text-white px-8">Socials</p>
                         </div>
                     </a>
                 </div>
@@ -123,9 +117,14 @@
 
                     <div class="mx-8">
                             
-                        <p class="text-justify"> In in purus sed orci pulvinar volutpat. Aenean vitae feugiat arcu, et vulputate nunc. Nulla facilisi. Nulla bibendum consequat elit, in convallis neque rhoncus non. Quisque porta mauris eros, eu varius dui facilisis in. Ut ac ligula aliquam, posuere sem eu, dictum risus. Quisque non dapibus orci, vitae porta neque. Sed at dui nunc. Etiam euismod gravida purus eu pulvinar.
+                        <p class="text-justify">
+                            Thanks for taking a moment to visit my website, hopefully you like what you see! I've been programming since I was 10 years old and I have a keen interest in graphics and software in general, I think a long term goal of mine would be to work my way into becoming a technical artist but the learning curve is steep... I've been keeping my learning in the technical art and gamedev field as a hobby but maybe someday it'll be a lot more usable but for now I'm going to keep learning. 
+                        
+                            <br/>
+                            <br/>
 
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent tempus eros eget lectus dictum elementum. Quisque ultrices diam eget nisi sagittis, et semper neque lacinia. Morbi gravida libero dolor, vitae pellentesque massa accumsan eget. Cras at venenatis leo, ac interdum lectus. Ut quis leo vel odio laoreet placerat pretium vitae enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur in eleifend massa. Donec ac eros nec urna aliquam accumsan et eu urna. Integer tempor elit eget ornare venenatis. Duis id tellus lobortis, cursus est at, tincidunt dui.</p>
+                            I studied a Computer Science and Japanese Linguistics at the <b>University of Auckland</b> (2017 - 2022), I know it's quite the mix but I found Japanese and Linguistics interesting so I did them on the side, they were really fun. So I have a formal study background on top of my informal use after all these years too. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer.
+                        </p>
 
                     </div>
                         
@@ -166,17 +165,32 @@
             <div class="text-white text-justify">
                 <div class="w-full bg-opacity-80 bg-gray-700">
                     <div id="skillContainer" class="m-auto p-10 z-10 bg-gray-600 hidden rounded-xl" style="width:calc(50% + 180px);">
-                        <p id="skillTitle0" class="text-6xl mb-10 hidden">Godot 4</p>
+                        <p id="skillTitle0" class="text-6xl mb-10 hidden">Godot</p>
 
-                        <p id="skillContent0" class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus commodo venenatis. In posuere finibus quam et commodo. Ut sollicitudin vitae dui ac ultricies. Etiam tristique libero eu lorem sollicitudin, sit amet placerat ante laoreet. Maecenas libero ligula, dapibus eget risus sed, ullamcorper euismod ante. Proin pulvinar arcu id erat finibus, quis molestie mauris pretium. Mauris malesuada, felis id iaculis tempus, libero justo maximus turpis, vel viverra leo mi ac quam. Morbi et odio porta, feugiat mauris non, convallis turpis. Nam aliquet vulputate diam, a mollis quam. Nam in mi dignissim orci fermentum porta nec sit amet dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum accumsan euismod tortor at porttitor. Ut arcu nisi, posuere at lorem dictum, semper sodales ligula. Aenean eu est lacus. Nulla consectetur ut lacus non commodo. Curabitur vitae lorem malesuada neque aliquam blandit.</p>
+                        <p id="skillContent0" class="hidden">    
+                            Godot is one of the more recent engines I've been learning to use but I really like how lightweight and easy to use it is. I've created a multiplayer prototype card game in Godot 3.4 but I'd like to port it to Godot 4 and use the new networking features. The language Godot uses, GDScript, is very reminescent of <b>Python</b> with its syntax and like Python is very easy to pick up and use. 
+                            <br/>
+                            <br/>
+                            I'd like to participate in a gamejam using Godot soonish and add it to this page, in the mean time I think I'll just port the card game to Godot 4, polish it a little and post it here instead.
+                        </p>
                     
-                        <p id="skillTitle1" class="text-6xl mb-10 hidden">Unity 2021LTS</p>
+                        <p id="skillTitle1" class="text-6xl mb-10 hidden">Unity</p>
                         
-                        <p id="skillContent1" class="hidden">Praesent magna erat, sagittis sit amet lacus eget, vestibulum maximus leo. Phasellus posuere sapien justo, nec maximus dui sodales ut. Nulla rhoncus dictum pretium. Nullam id est dolor. Integer porttitor scelerisque blandit. Vestibulum et egestas turpis. Vivamus laoreet odio et mauris dignissim hendrerit. Duis at volutpat sapien, at mattis ex. Cras augue felis, volutpat a rutrum eu, tempus quis nisi. Cras sapien arcu, gravida et fermentum a, ullamcorper vitae arcu. Duis ut mi condimentum, dignissim eros ut, sollicitudin elit. Vestibulum laoreet posuere consectetur. Duis nec dictum elit. Etiam feugiat ante eu ante accumsan, non mollis nibh aliquam. Phasellus vehicula libero sit amet turpis mattis, vel auctor sapien feugiat.</p>
+                        <p id="skillContent1" class="hidden">
+                            Unity is my most used engine by far, I started learning how to use it in 2016 and it's come a long way since then. Unity uses <b>C#</b> as it's programming language of choice and it is the language I am the most fond of. I have participated in one game jam for Unity (of which you can see and even play the submitted game in the work section) and made many prototypes over the years ranging from very simple point n clicks to training Machine Learning Agents to act as AI units in the game. 
+                            <br/>
+                            <br/>
+                            While Godot's node based model is growing on me, I am still most at home using gameobject although I would like to learn ECS when it is production ready.
+                        </p>
                         
-                        <p id="skillTitle2" class="text-6xl mb-10 hidden">Unreal Engine 5</p>
+                        <p id="skillTitle2" class="text-6xl mb-10 hidden">Unreal Engine</p>
 
-                        <p id="skillContent2" class="hidden">Proin rhoncus nulla odio, id fermentum urna tempor et. Cras egestas augue suscipit mollis lobortis. Ut elementum mauris nec molestie aliquam. Nulla quis ex at nulla sollicitudin semper sit amet quis lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas euismod odio sem, id fermentum lacus sollicitudin quis. Vestibulum id erat vitae massa scelerisque tempor. Sed placerat laoreet semper. Vivamus sed feugiat lacus. Curabitur nunc justo, bibendum in gravida a, sagittis ut odio. Curabitur maximus interdum erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque rutrum, ligula sit amet ultricies venenatis, massa lectus bibendum nibh, sit amet facilisis sem augue a quam. Curabitur magna diam, sodales sit amet pretium ac, fermentum at sapien. Aenean convallis tortor vel diam pulvinar condimentum.</p>
+                        <p id="skillContent2" class="hidden">
+                            Most of my endevours in Unreal Engine were in 2021, it is very feature packed which makes it feel cluttered at times but it looks fantastic out the box. It has a pretty steep learning curve and uses a combination of <b>C++</b> and 'Blueprints' which is their name for visual scripting and the best workflow appears to be mixing and matching using the two but I mostly like to stick to the code and only use Blueprint if I have to. I have made a few prototypes in Unreal engine and a tetris clone.
+                            <br/>
+                            <br/>
+                            I would like to continue my learning in Unreal Engine, especially with the introduction of Lumen and Nanite as flagship technologies
+                        </p>
                     </div>
                 </div>
 
@@ -185,19 +199,74 @@
                 </div>
             </div>
 
-            <!-- Fill -->
+            <!-- Work -->
             <div class="w-full text-white bg-gray-800 bg-opacity-95">
-                <div class="">
-                    <p class="text-center text-5xl py-10">Heres some of my work:</p>
+                <p class="text-center text-5xl py-10">Heres some of my work:</p>
+
+                <div class="w-max m-auto p-10">
+                    <div class="inline-grid grid-cols-2">
+                        
+                        <!-- Grid Item -->
+                        <div class="mr-4 ml-4 w-64 bg-gray-600">
+                            <div class="w-64 h-64">
+                                <img src="media/gigasigma.png">
+                            </div>
+
+                            <div class="p-2 bg-gray-700">
+                                <b>Placeholder</b>
+                            </div>
+
+                            <div class="p-3 bg-gray-600">
+                                <p class="text-justify">
+                                    I'll put something else here...
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Grid Item -->
+                        <div class="mr-4 ml-4 w-64 bg-gray-600">
+                            <div class="w-64 h-64">
+                                <img src="media/goblin.png">
+                            </div>
+
+                            <div class="p-2 bg-gray-700">
+                                <b>Loot Goblin - Unity</b>
+                            </div>
+
+                            <div class="p-3 bg-gray-600">
+                                <p class="text-justify">
+                                    A gamejam project I made in 3 days. I made everything myself except for the sound - I used royalty free sounds for that (I made the art in blender, I'm not an artist so go easy on it please)
+                                </p>
+
+                                <br/>
+
+                                <p>
+                                    You can play it <a class="text-blue-400" href="goblin/webgl.html"><b>here</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
-            
-            <div class="w-full h-96 bg-gray-800 bg-opacity-95">               
-                
+
             </div>
 
-            <div class="w-full h-96 bg-gray-800 bg-opacity-95">               
-                
+            <!-- Contact -->
+            <div class="w-full bg-gray-900 text-white">
+                <div class="p-6 text-center">
+                    Dylan Jansen 2022 -
+                    
+                    <a class="text-blue-400" href="https://www.linkedin.com/in/dylan-jansen-322352210/">Linkedin</a>
+                    
+                    -
+                    
+                    <a class="text-blue-400" href="https://twitter.com/ReivynDev">Twitter</a>
+                    
+                    -
+                    
+                    <a class="text-blue-400" href="https://github.com/DillaDJ">Github</a>
+                </div>             
             </div>
         </div>
         
@@ -212,7 +281,6 @@
             }
         }
         postReader = new IndexPostReader();
-        
 
         // Creates and initializes shader canvas after site loads
         window.addEventListener('load', function () {
