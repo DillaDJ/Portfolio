@@ -123,7 +123,7 @@
                             <br/>
                             <br/>
 
-                            I studied a Computer Science and Japanese Linguistics at the <b>University of Auckland</b> (2017 - 2022), I know it's quite the mix but I found Japanese and Linguistics interesting so I did them on the side, they were great fun. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer. Which is why I'll jump around and make projects in all sorts of engines, frameworks and programming languages. I'd like think I pick up new things quickly because I have a base understanding of common concepts between all of them and pick everything else up as I go. 
+                            I studied Computer Science and Linguistics at the <b>University of Auckland</b> (2017 - 2022), I know it's quite the mix but I found Linguistics interesting so I did it on the side, it's great fun. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer. Which is why I'll jump around and make projects in all sorts of engines, frameworks and programming languages. I'd like think I pick up new things quickly because I have a base understanding of common concepts between all of them and pick everything else up as I go. I think that's about it for me, hope you think the things on this page are interesting!
                         </p>
 
                     </div>
@@ -162,7 +162,7 @@
             </div>
             
             <!-- Skill Content -->
-            <div class="text-white text-justify">
+            <div id="skill-content" class="text-white text-justify">
                 <div class="w-full bg-opacity-80 bg-gray-700">
                     <div id="skillContainer" class="m-auto p-10 z-10 bg-gray-700 hidden rounded-xl" style="width:calc(50% + 180px);">
                         <p id="skillTitle0" class="text-6xl mb-10 hidden">Godot</p>
@@ -273,6 +273,7 @@
         const topPage = document.getElementById("top-page");
         const aboutMe = document.getElementById("about-me");
         const skills = document.getElementById("skills");
+        const skillContent = document.getElementById("skill-content");
         const work = document.getElementById("work");
 
         var canvas = document.createElement("canvas");
@@ -348,7 +349,7 @@
             
             if      (position === "aboutMe") offset = topPage.offsetHeight;
             else if (position === "skills")  offset = topPage.offsetHeight + aboutMe.offsetHeight;
-            else if (position === "work")    offset = topPage.offsetHeight + aboutMe.offsetHeight + skills.offsetHeight; 
+            else if (position === "work")    offset = topPage.offsetHeight + aboutMe.offsetHeight + skillContent.offsetHeight + skills.offsetHeight; 
             
             window.scroll({
                 behavior: 'smooth',
