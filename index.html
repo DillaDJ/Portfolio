@@ -168,7 +168,7 @@
                         <p id="skillTitle0" class="text-6xl mb-10 hidden">Godot</p>
 
                         <p id="skillContent0" class="hidden">    
-                            Godot is one of the more recent engines I've been learning to use but I really like how lightweight and easy to use it is. I made a small multiplayer prototype card game in Godot 3.4 that's based off of a game called 'president' (or scum or tycoon, whatever you call it) that I'd like to port it to Godot 4 and use the new networking features. The language Godot uses, GDScript, is very reminescent of <b>Python</b> with its syntax and like Python is very easy to pick up and use. 
+                            Godot is one of the more recent engines I've been learning to use but I really like how lightweight and easy to use it is. I made a small multiplayer prototype card game in Godot 3.4 that's based off of a game called 'president' (or scum or tycoon, whatever you call it) that I'd like to port it to Godot 4 and use the new networking features. The language Godot uses, GDScript, is very similar to <b>Python</b> with its syntax and like Python is very easy to pick up and use. 
                             <br/>
                             <br/>
                             I'd like to participate in a gamejam using Godot soonish and add it to this page, in the mean time I think I'll just port the card game to Godot 4, polish it a little and put it here too.
@@ -203,37 +203,105 @@
             <div id="work" class="w-full text-white bg-gray-800 bg-opacity-95">
                 <p class="text-center text-5xl py-10">Heres some of my work:</p>
 
-                <div class="grid grid-cols-2 gap-12 m-auto p-10 w-max h-full">
-                    
-                    <!-- Grid Item -->
-                    <div class="w-72 h-full rounded-md bg-gray-600">
-                        <div class="h-64 overflow-hidden rounded-t-md">
-                            <img src="media/gigasigma.png">
+                <div class="grid grid-cols-4 gap-12 m-auto p-10 w-max h-full">     
+
+                    <!-- This Website -->
+                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                        <!-- Skill Labels -->
+                        <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
+                            <img class="w-12" src="media/javascript.png">
                         </div>
 
-                        <div class="p-2 bg-gray-700">
-                            <b>Placeholder</b>
+                        <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-24 rounded-r shadow bg-indigo-600">
+                            <img class="w-6" src="media/HTML5.png">
+                        </div>
+
+                        <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-36 rounded-r shadow bg-indigo-600">
+                            <img class="w-6" src="media/CSS.png">
+                        </div>
+
+                        <!-- Icon -->
+                        <div class="w-72 h-64 overflow-hidden rounded-t-md">
+                            <img src="media/website.png">
+                        </div>
+
+                        <div class="relative p-2 bg-gray-700">
+                            <b>This Website</b>
                         </div>
 
                         <div class="p-4 mb-2 bg-gray-600">
-                            <p class="">
-                                I'll put something else here...
+                            <p>
+                                I also made this website! I wrote my own HTML and JavaScript but I'm using TailWind for CSS. I might try using a JavaScript framework like Astro and port this site to it at some point but I'll stay plain for now.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Grid Item -->
-                    <div class="w-72 h-full rounded-md bg-gray-600">
+                    <!-- Card Game -->
+                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                        <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
+                            <img class="w-12" src="media/godot.png">
+                        </div>
+
+                        <div class="h-64 overflow-hidden rounded-t-md">
+                            <img src="media/gigasigma.png">
+                        </div>
+
+
+                        <div class="p-2 bg-gray-700">
+                            <b>Godot Card Game</b>
+                        </div>
+
+                        <div class="p-4 mb-2 bg-gray-600">
+                            <p>
+                                Networked Card Game goes here after I port it to Godot 4 and polish it.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Minesweeper -->
+                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                        <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
+                            <img class="w-12" src="media/cplusplus.png">
+                        </div>
+
+                        <div class="h-64 overflow-hidden rounded-t-md">
+                            <img src="media/minesweeper.png">
+                        </div>
+
+
+                        <div class="p-2 bg-gray-700">
+                            <b>Minesweeper</b>
+                        </div>
+
+                        <div class="p-4 mb-2 bg-gray-600">
+                            <p>
+                                A minesweeper clone written in <b>C++</b>, I wrote this so I could further familiarize myself with the syntax. The GUI is written using an amazing open source library called <a class="text-blue-400" href="https://github.com/ocornut/imgui">Dear ImGui</a> (it has a dark theme)!
+                            </p>
+
+                            </br>
+
+                            <p>
+                                You can find it here <a class="text-blue-400" href="https://github.com/DillaDJ/Minesweeper"><b>here</b></a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Loot Goblin -->
+                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                        <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
+                            <img class="w-12" src="media/unity.png">
+                        </div>
+
                         <div class="w-72 h-64 overflow-hidden rounded-t-md">
                             <img src="media/goblin.png">
                         </div>
 
-                        <div class="p-2 bg-gray-700">
-                            <b>Loot Goblin - Unity</b>
+                        <div class="relative p-2 bg-gray-700">
+                            <b>Loot Goblin</b>
                         </div>
 
                         <div class="p-4 mb-2 bg-gray-600">
-                            <p class="">
+                            <p>
                                 A gamejam project I made in 3 days. I made everything myself (the art was made in blender, I'm not an artist so go easy please) except for the sound - I used royalty free sounds
                             </p>
 
@@ -246,7 +314,6 @@
                     </div>
 
                 </div>
-
             </div>
 
             <!-- Contact -->
