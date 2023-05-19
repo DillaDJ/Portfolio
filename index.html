@@ -6,207 +6,111 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="reader.js"></script>
 
-        <!-- Animation Styling -->
         <style>
-            @keyframes fade-in {
-                from { opacity: 0.0; }
-                to { opacity: 1.0; }
-            }
-            @keyframes fade-in2 {
-                from { opacity: 0.0; }
-                to { opacity: 0.9; }
-            }
-            
-            #msg-bg {
-                animation: fade-in2 2s linear 1.5s 1 forwards;
-                opacity: 0;
-            }
-
-            #hello-msg {
-                animation: fade-in 1s linear 4.5s 1 forwards;
-                opacity: 0;
-            }
-
-            #pre-name-msg {
-                animation: fade-in 1s linear 6.2s 1 forwards;
-                opacity: 0;
-            }
-            
-            #name-msg {
-                animation: fade-in 2s linear 7.6s 1 forwards;
-                opacity: 0;
-            }
-          
-            #post-name-msg {
-                animation: fade-in 2s linear 9.2s 1 forwards;
-                opacity: 0;
+            body {
+                overflow-x: hidden;
             }
         </style>
     </head>
 
     <body>
-        <div class="w-full h-full">
-                        
-            <!-- Top-page Canvas and Content -->
-            <div id="canvas-container" class="w-full h-full fixed -z-10"></div>
+        <!-- Top-page Canvas and Content -->
+        <div id="canvas-container" class="w-full h-full fixed -z-10"></div>
+        <div id="top-page" class="flex flex-col w-full h-screen">
+            <div id="msg-bg" class="px-5 py-2 m-auto relative rounded-xl bg-gray-800">
+                <p id="name-msg" class="inline align-middle text-center text-white text-5xl">Dylan Jansen</p>
+                <p id="post-name-msg" class="text-white text-2xl py-1">Software Developer</p>
+            </div>
             
-            <div id="top-page" class="flex flex-col w-full h-screen">
-                <div id="msg-bg" class="m-auto px-6 py-4 rounded-xl bg-gray-800">
-                    <p id="hello-msg" class="inline align-bottom text-white text-xl w-52">Hello,</p>
-                    <p id="pre-name-msg" class="inline align-bottom text-white text-xl w-52">my name is</p>
-                    <p id="name-msg" class="inline align-middle text-center text-white text-5xl px-1">Dylan Jansen</p>
-                    <p id="post-name-msg" class="text-white text-center text-2xl py-1">I'm a Software Developer</p>
-                </div>
+            <div class="absolute flex" style="top: calc(100% - 24px);">
+                <a onclick="swapShaderContent(0)" class="cursor-pointer select-none">
+                    <div id="shaderPicker0" class="w-max h-6 pl-2 bg-gray-800">
+                        <p class="text-sm text-gray-200 pr-2 text-indigo-200">Basic</p>
+                    </div>
+                </a>
                 
-                <a onclick="scrollToPos('aboutMe')">
-                    <div class="absolute cursor-pointer" style="top: calc(100% - 80px); left: calc(50% - 25px); width: 50px; height: 50px;">
-                        <img src="media/scrolldown.png">
+                <a onclick="swapShaderContent(1)" class="cursor-pointer select-none">
+                    <div id="shaderPicker1" class="w-max h-6 pl-2 bg-gray-900">
+                        <p class="text-sm text-gray-200 pr-2 text-indigo-200">Polkadots</p>
                     </div>
                 </a>
 
-                <div class="absolute flex" style="top: calc(100% - 24px);">
-                    <a onclick="swapShaderContent(0)" class="cursor-pointer select-none">
-                        <div id="shaderPicker0" class="w-max h-6 pl-2 bg-gray-800">
-                            <p class="text-sm text-gray-200 pr-2 text-indigo-200">Basic</p>
-                        </div>
-                    </a>
+                <a onclick="swapShaderContent(2)" class="cursor-pointer select-none">
+                    <div id="shaderPicker2" class="w-max h-6 pl-2 bg-gray-900">
+                        <p class="text-sm text-gray-200 pr-2 text-indigo-200">Placeholder</p>
+                    </div>
+                </a>
+            </div>   
+        </div>
                     
-                    <a onclick="swapShaderContent(1)" class="cursor-pointer select-none">
-                        <div id="shaderPicker1" class="w-max h-6 pl-2 bg-gray-900">
-                            <p class="text-sm text-gray-200 pr-2 text-indigo-200">Polkadots</p>
-                        </div>
-                    </a>
-                </div>
+        <!-- About Me -->
+        <div id="about-me" class="flex items-center w-full h-screen pb-20 bg-gray-800 bg-opacity-95 text-white"> 
+            <div class="m-auto">
+                <p class="text-center text-5xl py-10">About me!</p>
                 
-            </div>
-            
-            <!-- Navbar -->
-            <div id="navbar" class="h-12 z-50 bg-gray-900">
-                <div class="m-auto flex w-max h-full">
-                    <a onclick="scrollToPos('top')">
-                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600 cursor-pointer select-none">
-                            <p class="text-white px-8">Top</p>
-                        </div>
-                    </a>
-
-                    <a onclick="scrollToPos('skills')">
-                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600 cursor-pointer select-none">
-                            <p class="text-white px-8">Skills</p>
-                        </div>
-                    </a>
-
-                    <a onclick="scrollToPos('work')">
-                        <div class="flex flex-col h-full justify-center content-center hover:bg-gray-600 cursor-pointer select-none">
-                            <p class="text-white px-8">Work</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- About Me -->
-            <div id="about-me" class="w-full pb-20 bg-gray-800 bg-opacity-95 text-white"> 
-                <div class="border-50">
-                    <p class="text-center text-5xl py-10">About me!</p>
-                </div>
-            
                 <div class="flex mx-10 2xl:m-auto 2xl:w-1/2">
-
+                    
                     <div class="flex-none overflow-hidden rounded-full mx-8" style="width: 200px; height: 200px;">
                         <img src="media/me.png" alt="Photo of me">
                     </div>
-
+                    
                     <div class="mx-8">
-                            
+                        
                         <p class="text-justify">
                             Thanks for taking a moment to visit my website, hopefully you like what you see! I was born in South Africa and I lived there until 2011, which is when my family and I moved to New Zealand. I've been programming since I was 10 years old and I have a keen interest in graphics and software in general, I think a long term goal of mine would be to work my way into becoming a technical artist but the learning curve is very steep. I've been keeping my learning in the technical art and gamedev field as a hobby and maybe someday it'll be a carreer option, but for now I'm going to keep learning. 
-                        
+                            
                             <br/>
                             <br/>
-
+                            
                             I studied Computer Science and Linguistics at the <b>University of Auckland</b> (2017 - 2022), I know it's quite the mix but I found Linguistics interesting so I did it on the side, it's great fun. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer. Which is why I'll jump around and make projects in all sorts of engines, frameworks and programming languages. I'd like think I pick up new things quickly because I have a base understanding of common concepts between all of them and pick everything else up as I go. I think that's about it for me, hope you think the things on this page are interesting!
                         </p>
-
-                    </div>
                         
+                    </div>
                 </div>
+                    
             </div>
+        </div>
 
-            <!-- Skill Buttons -->
-            <div id="skills" class="w-full bg-gray-700 bg-opacity-80 text-white"> 
-                <div>
-                    <p class="text-center text-5xl py-10">I am skilled in:</p>
-                </div>
-            
-                <div class="flex w-max m-auto">
-                    <a id="skillButton0" class="lg:mx-10 hover:bg-gray-500 cursor-pointer" onclick="showCategory(0)">
-                        <div class="relative h-full px-10 py-20">
-                            <img class="h-40 w-40" src="media/godot.png" alt="Godot Logo">
-                            <img id="skillWedge0" class="m-auto h-10 w-10 absolute hidden" style="left: calc(50% - 20px); bottom: -8px;" src="media/tri.png" alt="wedge">
-                        </div>
-                    </a>
+        <!-- Skills -->
+        <div id="skills" class="flex items-center w-full h-screen bg-gray-700 bg-opacity-80 text-white"> 
+            <div class="m-auto">
+                <p class="text-center text-5xl py-10">My Skills</p>
+                    <div class="tooltip relative inline-block m-10">
+                        <img class="h-40" src="media/godot.png">
+
+                        <span class="tooltiptext invisible absolute text-center px-5 py-2 mt-4 w-full rounded bg-gray-900">Godot</span>
+                    </div>
+
+                    <div class="tooltip relative inline-block m-10">
+                        <img class="h-40" src="media/unity.png">
+
+                        <span class="tooltiptext invisible absolute text-center px-5 py-2 mt-4 w-full rounded bg-gray-900">Unity</span>
+                    </div> 
+
+                    <div class="tooltip relative inline-block m-10">
+                        <img class="h-40" src="media/unreal.png">
+
+                        <span class="tooltiptext invisible absolute text-center px-5 py-2 mt-4 w-full rounded bg-gray-900">Unreal Engine</span>
+                    </div> 
                 
-                    <a id="skillButton1" class="lg:mx-10 hover:bg-gray-500 cursor-pointer" onclick="showCategory(1)">
-                        <div class="relative h-full px-10 py-20">                      
-                            <img class="h-40 w-40" src="media/unity.png" alt="Unity Logo">
-                            <img id="skillWedge1" class="m-auto absolute h-10 w-10 hidden" style="left: calc(50% - 20px); bottom: -8px;" src="media/tri.png" alt="wedge">
-                        </div>
-                    </a>
-                    
-                    <a id="skillButton2" class="lg:mx-10 hover:bg-gray-500 cursor-pointer" onclick="showCategory(2)">
-                        <div class="relative h-full px-10 py-20">                      
-                            <img class="h-40 w-40" src="media/unreal.png" alt="Unreal Engine Logo">
-                            <img id="skillWedge2" class="m-auto absolute h-10 w-10 hidden" style="left: calc(50% - 20px); bottom: -8px;" src="media/tri.png" alt="wedge">
-                        </div>
-                    </a>
-                </div>
+                    <style>
+                        .tooltip:hover .tooltiptext {
+                            visibility: visible;
+                        }
+                    </style>
+
             </div>
-            
-            <!-- Skill Content -->
-            <div id="skill-content" class="text-white text-justify">
-                <div class="w-full bg-opacity-80 bg-gray-700">
-                    <div id="skillContainer" class="m-auto p-10 z-10 bg-gray-700 hidden rounded-xl" style="width:calc(50% + 180px);">
-                        <p id="skillTitle0" class="text-6xl mb-10 hidden">Godot</p>
+        </div>
 
-                        <p id="skillContent0" class="hidden">    
-                            Godot is one of the more recent engines I've been learning to use but I really like how lightweight and easy to use it is. I made a small multiplayer prototype card game in Godot 3.4 that's based off of a game called 'president' (or scum or tycoon, whatever you call it) that I'd like to port it to Godot 4 and use the new networking features. The language Godot uses, GDScript, is very similar to <b>Python</b> with its syntax and like Python is very easy to pick up and use. 
-                            <br/>
-                            <br/>
-                            I'd like to participate in a gamejam using Godot soonish and add it to this page, in the mean time I think I'll just port the card game to Godot 4, polish it a little and put it here too.
-                        </p>
-                    
-                        <p id="skillTitle1" class="text-6xl mb-10 hidden">Unity</p>
-                        
-                        <p id="skillContent1" class="hidden">
-                            Unity is my most used engine by far, I started learning how to use it in 2016 and it's come a long way since then. Unity uses <b>C#</b> as it's programming language of choice and it is the language I am the most fond of. I have participated in one game jam for Unity (of which you can see and even play the submitted game in the work section) and made many prototypes over the years ranging from very simple point n clicks to training Machine Learning Agents to act as AI units in the game. 
-                            <br/>
-                            <br/>
-                            While Godot's node based model is growing on me, I am still most at home using gameobject although I would like to learn ECS when it is production ready.
-                        </p>
-                        
-                        <p id="skillTitle2" class="text-6xl mb-10 hidden">Unreal Engine</p>
+        <!-- Work -->
+        <div id="work" class="flex items-center w-full h-screen text-white bg-gray-800 bg-opacity-95">
+            <div class="m-auto">
+                <p class="text-center text-5xl pb-10 w-screen">My Work</p>
 
-                        <p id="skillContent2" class="hidden">
-                            Most of my endevours in Unreal Engine were in 2021, it is very feature packed which makes it feel cluttered at times but it looks fantastic out the box. It has a pretty steep learning curve and uses a combination of <b>C++</b> and 'Blueprints' which is their name for visual scripting and the best workflow appears to be mixing and matching using the two but I mostly like to stick to the code and only use Blueprint if I have to. I have made a few prototypes in Unreal engine and a tetris clone.
-                            <br/>
-                            <br/>
-                            I would like to continue my learning in Unreal Engine, especially with the introduction of Lumen and Nanite as flagship technologies
-                        </p>
-                    </div>
-                </div>
-
-                <div id="skillBottomPad" class="pb-5 bg-gray-700 bg-opacity-80">
-                    <p id="skillDefault" class="text-2xl text-center">Click on an icon for more info!</p>
-                </div>
-            </div>
-
-            <!-- Work -->
-            <div id="work" class="w-full text-white bg-gray-800 bg-opacity-95">
-                <p class="text-center text-5xl py-10">Heres some of my work:</p>
-
-                <div class="grid md:grid-cols-2 2xl:grid-cols-4 xl:grid-cols-3 gap-12 m-auto p-10 w-max h-full">     
+                <div class="flex justify-center">
 
                     <!-- This Website -->
-                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                    <div class="relative float-left mx-10 w-72 rounded-md bg-gray-600">
                         <!-- Skill Labels -->
                         <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
                             <img class="w-12" src="media/javascript.png">
@@ -229,6 +133,7 @@
                             <b>This Website</b>
                         </div>
 
+                        <!-- Description -->
                         <div class="p-4 mb-2 bg-gray-600">
                             <p>
                                 I also made this website! I wrote my own HTML and JavaScript but I'm using TailWind for CSS. I might try using a JavaScript framework like Astro and port this site to it at some point but I'll stay plain for now.
@@ -237,7 +142,7 @@
                     </div>
 
                     <!-- Something Else -->
-                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                    <div class="relative float-left mx-10 w-72 rounded-md bg-gray-600">
                         <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
                             <img class="w-12" src="media/unreal.png">
                         </div>
@@ -259,7 +164,7 @@
                     </div>
 
                     <!-- Tycoon -->
-                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                    <div class="relative float-left mx-10 w-72 rounded-md bg-gray-600">
                         <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
                             <img class="w-12" src="media/godot.png">
                         </div>
@@ -287,7 +192,7 @@
                     </div>
 
                     <!-- Minesweeper -->
-                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                    <div class="relative float-left mx-10 w-72 rounded-md bg-gray-600">
                         <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
                             <img class="w-12" src="media/cplusplus.png">
                         </div>
@@ -316,7 +221,7 @@
                     </div>
 
                     <!-- Loot Goblin -->
-                    <div class="relative w-72 h-full rounded-md bg-gray-600">
+                    <div class="relative float-left mx-10 w-72 rounded-md bg-gray-600">
                         <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
                             <img class="w-12" src="media/unity.png">
                         </div>
@@ -348,41 +253,58 @@
                     </div>
 
                 </div>
-            </div>
 
-            <!-- Contact -->
-            <div class="w-full bg-gray-900 text-white">
-                <div class="p-6 text-center">
-                    Dylan Jansen 2022 -
-                    
-                    <a class="text-blue-400" href="https://www.linkedin.com/in/dylan-jansen-322352210/">Linkedin</a>
-                    
-                    -
-                    
-                    <a class="text-blue-400" href="https://github.com/DillaDJ">Github</a>
-                    
-                    -
-                    
-                    <a class="text-blue-400" href="https://twitter.com/ReivynDev">Twitter</a>
-                </div>             
+                <div class="p-10 text-center">
+                    <a>Back</a> <a>.</a> <a>Forward</a>
+                </div>
+
+                
             </div>
+            
         </div>
-        
+
+        <!-- Contact -->
+        <div id="contact" class="flex items-center w-full h-screen bg-gray-900 bg-opacity-95 text-white">
+            <div class="m-auto text-center">
+                <!-- <p class="text-center text-5xl py-10">Contact Me</p> -->
+                
+                <div class="inline-block m-5">          
+                    <a href="https://github.com/DillaDJ">
+                        <img class="w-20" src="media/github-mark-white.png">
+                    </a>
+                </div>
+                        
+                <div class="inline-block m-5">            
+                    <a href="https://twitter.com/ReivynDev">
+                        <img class="w-20" src="media/twitter-white.png">
+                    </a>
+                </div>
+                
+                <div class="inline-block m-5">
+                    <a href="https://www.linkedin.com/in/dylan-jansen-322352210/">
+                        <img class="w-20" src="media/linkedin.png">
+                    </a>
+                </div>
+                
+                <p class="text-center text-xl py-10">Dylan Jansen 2023</p>
+            </div>             
+        </div>      
 
         <script>
-        const navbar = document.getElementById("navbar");
-        const topPage = document.getElementById("top-page");
-        const aboutMe = document.getElementById("about-me");
-        const skills = document.getElementById("skills");
-        const skillContent = document.getElementById("skill-content");
-        const work = document.getElementById("work");
+        const about_offset = document.getElementById("top-page").offsetHeight;
+        const skills_offset = document.getElementById("about-me").offsetHeight + about_offset;
+        const work_offset = document.getElementById("work").offsetHeight + skills_offset;
+        const contact_offset = document.getElementById("contact").offsetHeight + work_offset;
 
         var canvas = document.createElement("canvas");
         var shaderDisplay = new GlslCanvas(canvas);
 
-        var firstContentTrigger = false; // Checking if content buttons have been clicked
-
+        // var firstContentTrigger = false; // Checking if content buttons have been clicked
+        
         var selectedShaderIdx = -1;
+
+        var last_scroll_pos = 0
+        var scrolled_idx = 0
 
         
         class IndexPostReader extends PostReader {
@@ -403,28 +325,25 @@
         })
         
         
-        // Navbar follows user after passing it
         window.addEventListener('scroll', function () {
-            if (document.documentElement.scrollTop > topPage.offsetHeight) {
-                navbar.style.position = "fixed"
-                navbar.style.top = "0px"
-                navbar.style.right = "0px"
-                navbar.style.bottom = "0px"
-                navbar.style.left = "0px"
-                
-                aboutMe.style.marginTop = "48px" // prevents page from displacing due to missing navbar
+            var offsets = [0, about_offset, skills_offset, work_offset, contact_offset];
+            var scroll_pos = window.pageYOffset;
+            var scroll_dir = scroll_pos > last_scroll_pos ? 1 : 0;
+
+            for (var i = 0; i < offsets.length - 1; i++) {
+                if (scroll_pos > offsets[i] && scroll_pos < offsets[i + 1]) {
+                    scrollToPos(offsets[i + scroll_dir]);
+                    break;
+                }
             }
-            else {
-                navbar.style.position = "relative"
-                aboutMe.style.marginTop = "0px"
-            }
+            last_scroll_pos = window.pageYOffset;
         })
                 
         
         function swapShaderContent(idx) {
-            var files = ["placeholder.hlsl", "dots.hlsl"];
+            var files = ["placeholder.hlsl", "dots.hlsl", "test.hlsl"];
             
-            for (var i = 0; i < 2; i++) {
+            for (var i = 0; i < files.length; i++) {
                 var shaderPicker = document.getElementById("shaderPicker" + i);
                 
                 if (i === idx) {
@@ -445,13 +364,7 @@
         }
         
 
-        function scrollToPos(position) {
-            var offset = 0;
-            
-            if      (position === "aboutMe") offset = topPage.offsetHeight;
-            else if (position === "skills")  offset = topPage.offsetHeight + aboutMe.offsetHeight;
-            else if (position === "work")    offset = topPage.offsetHeight + aboutMe.offsetHeight + skillContent.offsetHeight + skills.offsetHeight; 
-            
+        function scrollToPos(offset) {            
             window.scroll({
                 behavior: 'smooth',
                 top: offset
@@ -459,40 +372,40 @@
         }
         
 
-        function showCategory(idx) {
-            if (!firstContentTrigger) {
-                var skillDefault = document.getElementById("skillDefault");
-                skillDefault.style.display = "none";
+        // function showCategory(idx) {
+        //     if (!firstContentTrigger) {
+        //         var skillDefault = document.getElementById("skillDefault");
+        //         skillDefault.style.display = "none";
     
-                var skillDefault = document.getElementById("skillContainer");
-                skillDefault.style.display = "block";
+        //         var skillDefault = document.getElementById("skillContainer");
+        //         skillDefault.style.display = "block";
                 
-                var skillBottomPad = document.getElementById("skillBottomPad");
-                skillBottomPad.style.paddingBottom = "60px";
+        //         var skillBottomPad = document.getElementById("skillBottomPad");
+        //         skillBottomPad.style.paddingBottom = "60px";
 
-                firstContentTrigger = false
-            }
+        //         firstContentTrigger = false
+        //     }
 
-            for (var i = 0; i < 3; i++) {
-                var button = document.getElementById("skillButton" + i);
-                var title = document.getElementById("skillTitle" + i);
-                var content = document.getElementById("skillContent" + i);
-                var wedge = document.getElementById("skillWedge" + i);
+        //     for (var i = 0; i < 3; i++) {
+        //         var button = document.getElementById("skillButton" + i);
+        //         var title = document.getElementById("skillTitle" + i);
+        //         var content = document.getElementById("skillContent" + i);
+        //         var wedge = document.getElementById("skillWedge" + i);
 
-                if (i === idx) {
-                    button.style.backgroundColor = "rgb(156, 163, 175)";
-                    title.style.display = "block";
-                    content.style.display = "block";
-                    wedge.style.display = "block";
-                }
-                else {
-                    button.style.backgroundColor = "";
-                    title.style.display = "none";
-                    content.style.display = "none";
-                    wedge.style.display = "none";
-                }
-            } 
-        }  
+        //         if (i === idx) {
+        //             button.style.backgroundColor = "rgb(156, 163, 175)";
+        //             title.style.display = "block";
+        //             content.style.display = "block";
+        //             wedge.style.display = "block";
+        //         }
+        //         else {
+        //             button.style.backgroundColor = "";
+        //             title.style.display = "none";
+        //             content.style.display = "none";
+        //             wedge.style.display = "none";
+        //         }
+        //     } 
+        // }  
 
         </script>
 
