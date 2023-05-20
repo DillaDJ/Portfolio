@@ -7,8 +7,8 @@
         <script src="reader.js"></script>
 
         <style>
-            body {
-                overflow-x: hidden;
+            html{
+                overflow: hidden;
             }
         </style>
     </head>
@@ -17,7 +17,7 @@
         <!-- Top-page Canvas and Content -->
         <div id="canvas-container" class="w-full h-full fixed -z-10"></div>
         <div id="top-page" class="flex flex-col w-full h-screen">
-            <div id="msg-bg" class="px-5 py-2 m-auto relative rounded-xl bg-gray-800">
+            <div id="msg-bg" class="px-5 py-2 m-auto relative rounded-xl bg-gray-800 bg-opacity-95">
                 <p id="name-msg" class="inline align-middle text-center text-white text-5xl">Dylan Jansen</p>
                 <p id="post-name-msg" class="text-white text-2xl py-1">Software Developer</p>
             </div>
@@ -25,18 +25,12 @@
             <div class="absolute flex" style="top: calc(100% - 24px);">
                 <a onclick="swapShaderContent(0)" class="cursor-pointer select-none">
                     <div id="shaderPicker0" class="w-max h-6 pl-2 bg-gray-800">
-                        <p class="text-sm text-gray-200 pr-2 text-indigo-200">Basic</p>
-                    </div>
-                </a>
-                
-                <a onclick="swapShaderContent(1)" class="cursor-pointer select-none">
-                    <div id="shaderPicker1" class="w-max h-6 pl-2 bg-gray-900">
-                        <p class="text-sm text-gray-200 pr-2 text-indigo-200">Polkadots</p>
+                        <p class="text-sm text-gray-200 pr-2 text-indigo-200">Polkadot</p>
                     </div>
                 </a>
 
-                <a onclick="swapShaderContent(2)" class="cursor-pointer select-none">
-                    <div id="shaderPicker2" class="w-max h-6 pl-2 bg-gray-900">
+                <a onclick="swapShaderContent(1)" class="cursor-pointer select-none">
+                    <div id="shaderPicker1" class="w-max h-6 pl-2 bg-gray-900">
                         <p class="text-sm text-gray-200 pr-2 text-indigo-200">Placeholder</p>
                     </div>
                 </a>
@@ -62,7 +56,7 @@
                             <br/>
                             <br/>
                             
-                            I studied Computer Science and Linguistics at the <b>University of Auckland</b> (2017 - 2022), I know it's quite the mix but I found Linguistics interesting so I did it on the side, it's great fun. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer. Which is why I'll jump around and make projects in all sorts of engines, frameworks and programming languages. I'd like think I pick up new things quickly because I have a base understanding of common concepts between all of them and pick everything else up as I go. I think that's about it for me, hope you think the things on this page are interesting!
+                            I studied Computer Science and Linguistics at the <b>University of Auckland</b> (2017 - 2023), I know it's quite the mix but I found Linguistics interesting so I did it on the side, it's great fun. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer. Which is why I'll jump around and make projects in all sorts of engines, frameworks and programming languages. I'd like think I pick up new things quickly because I have a base understanding of common concepts between all of them and pick everything else up as I go. I think that's about it for me, hope you think the things on this page are interesting!
                         </p>
                         
                     </div>
@@ -299,20 +293,16 @@
         </div>      
 
         <script>
-        const about_offset = document.getElementById("top-page").offsetHeight;
-        const skills_offset = document.getElementById("about-me").offsetHeight + about_offset;
-        const work_offset = document.getElementById("work").offsetHeight + skills_offset;
-        const contact_offset = document.getElementById("contact").offsetHeight + work_offset;
+        const max_scrolls = 4;
 
         var canvas = document.createElement("canvas");
         var shaderDisplay = new GlslCanvas(canvas);
-
-        // var firstContentTrigger = false; // Checking if content buttons have been clicked
-        
         var selectedShaderIdx = -1;
 
-        var last_scroll_pos = 0
-        var scrolled_idx = 0
+        var scroll_offset = document.getElementById("top-page").offsetHeight;
+        var scroll_timer = null;
+        var scroll_enabled = true;
+        var scroll_idx = 0;
 
         
         class IndexPostReader extends PostReader {
@@ -324,32 +314,38 @@
 
 
         // Creates and initializes shader canvas after site loads
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             document.getElementById("canvas-container").appendChild(canvas);
             canvas.style.width = '100%';
             canvas.style.height = '100%';
 
+            scroll_idx = get_closest_scroll_idx();
+            scrollToPos(scroll_idx * scroll_offset);
+            
             swapShaderContent(0);
-        })
+        });
         
-        
-        window.addEventListener('scroll', function () {
-            var offsets = [0, about_offset, skills_offset, work_offset, contact_offset];
-            var scroll_pos = window.pageYOffset;
-            var scroll_dir = scroll_pos > last_scroll_pos ? 1 : 0;
 
-            for (var i = 0; i < offsets.length - 1; i++) {
-                if (scroll_pos > offsets[i] && scroll_pos < offsets[i + 1]) {
-                    scrollToPos(offsets[i + scroll_dir]);
-                    break;
-                }
-            }
-            last_scroll_pos = window.pageYOffset;
+        window.addEventListener('resize', function() {
+            scroll_offset = document.getElementById("top-page").offsetHeight;
+            
+            scroll_idx = get_closest_scroll_idx();
+            scrollToPos(scroll_idx * scroll_offset);
         })
-                
         
+
+        window.addEventListener('scroll', function() {
+            if(scroll_timer !== null) {
+                clearTimeout(scroll_timer);        
+            }
+            scroll_timer = setTimeout(function() {
+                scroll_enabled = true;
+            }, 20);
+        });
+        
+
         function swapShaderContent(idx) {
-            var files = ["placeholder.hlsl", "dots.hlsl", "test.hlsl"];
+            var files = ["polkadot.hlsl", "test.hlsl"];
             
             for (var i = 0; i < files.length; i++) {
                 var shaderPicker = document.getElementById("shaderPicker" + i);
@@ -372,49 +368,60 @@
         }
         
 
-        function scrollToPos(offset) {            
-            window.scroll({
-                behavior: 'smooth',
-                top: offset
+        function get_closest_scroll_idx() {
+            var scroll_pos = window.pageYOffset;
+            var closest_scroll = 999999;
+            var closest_idx = 0;
+
+            for (var i = 0; max_scrolls > i; i++) {
+                var scroll_dist = Math.abs(i * scroll_offset - scroll_pos);
+                if (scroll_dist < closest_scroll) {
+                    closest_scroll = scroll_dist;
+                    closest_idx = i;
+                }
+            }
+
+            if (closest_idx < 0) {
+                return 0;
+            }
+            else if (closest_idx > max_scrolls) {
+                return max_scrolls;
+            }
+            return closest_idx;
+        }
+
+
+        function handleScroll(event) {
+            var scroll_pos = window.pageYOffset;
+            if (!scroll_enabled) return;            
+            
+            var delta = event.deltaY || event.detail || event.wheelDelta;
+            scroll_idx += delta > 0 ? 1 : -1; // Adds scroll direction
+            if (scroll_idx < 0) {
+                scroll_idx = 0;
+                return;
+            }
+            else if (scroll_idx > max_scrolls) {
+                scroll_idx = max_scrolls;
+                return;
+            }
+            scroll_enabled = false;
+
+            scrollToPos(scroll_idx * scroll_offset);
+        };
+
+
+        function scrollToPos(offset) {
+            if (offset >  max_scrolls * scroll_offset) return;
+
+            window.scrollTo({
+                top: offset,
+                behavior: "smooth"
             });
         }
+
         
-
-        // function showCategory(idx) {
-        //     if (!firstContentTrigger) {
-        //         var skillDefault = document.getElementById("skillDefault");
-        //         skillDefault.style.display = "none";
-    
-        //         var skillDefault = document.getElementById("skillContainer");
-        //         skillDefault.style.display = "block";
-                
-        //         var skillBottomPad = document.getElementById("skillBottomPad");
-        //         skillBottomPad.style.paddingBottom = "60px";
-
-        //         firstContentTrigger = false
-        //     }
-
-        //     for (var i = 0; i < 3; i++) {
-        //         var button = document.getElementById("skillButton" + i);
-        //         var title = document.getElementById("skillTitle" + i);
-        //         var content = document.getElementById("skillContent" + i);
-        //         var wedge = document.getElementById("skillWedge" + i);
-
-        //         if (i === idx) {
-        //             button.style.backgroundColor = "rgb(156, 163, 175)";
-        //             title.style.display = "block";
-        //             content.style.display = "block";
-        //             wedge.style.display = "block";
-        //         }
-        //         else {
-        //             button.style.backgroundColor = "";
-        //             title.style.display = "none";
-        //             content.style.display = "none";
-        //             wedge.style.display = "none";
-        //         }
-        //     } 
-        // }  
-
+        document.addEventListener("wheel", handleScroll);
         </script>
 
     </body>
