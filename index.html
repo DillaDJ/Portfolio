@@ -38,19 +38,19 @@
         </div>
                     
         <!-- About Me -->
-        <div id="about-me" class="flex items-center w-full h-screen pb-20 bg-gray-800 bg-opacity-95 text-white"> 
+        <div id="about-me" class="flex items-center w-full h-screen bg-gray-800 bg-opacity-95 text-white"> 
             <div class="m-auto">
-                <p class="text-center text-5xl py-10">About me!</p>
+                <p class="text-center py-10 text-4xl md:text-5xl">About me!</p>
                 
                 <div class="flex mx-10 2xl:m-auto 2xl:w-1/2">
                     
-                    <div class="flex-none overflow-hidden rounded-full mx-8" style="width: 200px; height: 200px;">
+                    <div class="flex-none overflow-hidden rounded-full mx-8 w-32 h-32 md:w-64 md:h-64">
                         <img src="media/me.png" alt="Photo of me">
                     </div>
                     
-                    <div class="mx-8">
+                    <div class="mx-8 w-72 sm:w-auto">
                         
-                        <p class="text-justify">
+                        <p class="text-justify text-xs md:text-sm lg:text-base">
                             Thanks for taking a moment to visit my website, hopefully you like what you see! I was born in South Africa and I lived there until 2011, which is when my family and I moved to New Zealand. I've been programming since I was 10 years old and I have a keen interest in graphics and software in general, I think a long term goal of mine would be to work my way into becoming a technical artist but the learning curve is very steep. I've been keeping my learning in the technical art and gamedev field as a hobby and maybe someday it'll be a carreer option, but for now I'm going to keep learning. 
                             
                             <br/>
@@ -68,21 +68,21 @@
         <!-- Skills -->
         <div id="skills" class="flex items-center w-full h-screen bg-gray-700 bg-opacity-80 text-white"> 
             <div class="m-auto">
-                <p class="text-center text-5xl py-10">My Skills</p>
+                <p class="text-center py-10 text-4xl md:text-5xl">My Skills</p>
                     <div class="tooltip relative inline-block m-10">
-                        <img class="h-40" src="media/godot.png">
+                        <img class="h-16 md:h-40" src="media/godot.png">
 
                         <span class="tooltiptext invisible absolute text-center px-5 py-2 mt-4 w-full rounded bg-gray-900">Godot</span>
                     </div>
 
                     <div class="tooltip relative inline-block m-10">
-                        <img class="h-40" src="media/unity.png">
+                        <img class="h-16 md:h-40" src="media/unity.png">
 
                         <span class="tooltiptext invisible absolute text-center px-5 py-2 mt-4 w-full rounded bg-gray-900">Unity</span>
                     </div> 
 
                     <div class="tooltip relative inline-block m-10">
-                        <img class="h-40" src="media/unreal.png">
+                        <img class="h-16 md:h-40" src="media/unreal.png">
 
                         <span class="tooltiptext invisible absolute text-center px-5 py-2 mt-4 w-full rounded bg-gray-900">Unreal Engine</span>
                     </div> 
@@ -99,7 +99,7 @@
         <!-- Work -->
         <div id="work" class="flex items-center w-full h-screen text-white bg-gray-800 bg-opacity-95">
             <div class="m-auto">
-                <p class="text-center text-5xl pb-10 w-screen">My Work</p>
+                <p class="text-center pb-10 w-screen text-4xl md:text-5xl">My Work</p>
 
                 <div class="flex justify-center">
                     <!-- Something Else -->
@@ -345,7 +345,7 @@
         
 
         function swapShaderContent(idx) {
-            var files = ["polkadot.hlsl", "test.hlsl"];
+            var files = ["dots.hlsl", "test.hlsl"];
             
             for (var i = 0; i < files.length; i++) {
                 var shaderPicker = document.getElementById("shaderPicker" + i);
@@ -373,7 +373,7 @@
             var closest_scroll = 999999;
             var closest_idx = 0;
 
-            for (var i = 0; max_scrolls > i; i++) {
+            for (var i = 0; i < max_scrolls + 1; i++) {
                 var scroll_dist = Math.abs(i * scroll_offset - scroll_pos);
                 if (scroll_dist < closest_scroll) {
                     closest_scroll = scroll_dist;
@@ -392,6 +392,8 @@
 
 
         function handleScroll(event) {
+            event.preventDefault();
+
             var scroll_pos = window.pageYOffset;
             if (!scroll_enabled) return;            
             
@@ -421,7 +423,7 @@
         }
 
         
-        document.addEventListener("wheel", handleScroll);
+        document.addEventListener("wheel", handleScroll, { passive: false });
         </script>
 
     </body>

@@ -26,33 +26,32 @@ const float dot_color_weight1 = 1.25;
 const float dot_color_weight2 = -0.25;
 
 
-const int number_of_dots = 40;
+const int number_of_dots = 20;
 
 const float dot_size = 0.9;
 const int dot_size_fades = 1;
 
 const float dot_size_weight1 = 0.1;
-const float dot_size_weight2 = 1.0;
+const float dot_size_weight2 = 1.78;
 
 const int dots_hide_behind_gradient = 1; // 0 = off; 1 and 2 = hides behind gradient1 and gradient2 respectively 
 const int dots_gradient_rotates_with_dots = 0;
 
 
 const float dot_rotation = -60.0;
-const float dot_scroll = 0.01;
+const float dot_scroll = 0.006;
 const int dot_scroll_alternates = 1; // 0 = off; 1 = alternating
 
 float sq_size;
 float sq_inset;
 
-const float min_dot_size = 0.1;
+const float min_dot_size = 0.11;
 
 
 vec2 rotateUV(vec2 in_uv, float rotation, vec2 pivot) {
 	float angle = radians(rotation);
 		
 	in_uv -= pivot;
-	
 	
 	mat2 rotation_matrix = mat2(vec2(sin(angle), cos(angle)), 
 								vec2(cos(angle), -sin(angle)));
@@ -68,7 +67,7 @@ void main() {
 	sq_inset = 1.0 - dot_size;
 	
 	// UV and Mask creation
-    vec2 UV = gl_FragCoord.xy/u_resolution.xx;
+    vec2 UV = gl_FragCoord.xy/u_resolution.yy;
 	vec2 uv = rotateUV(UV, dot_rotation, vec2(0.5));
 	
 	vec2 scrolling_mask = step(sq_size, mod(uv, 2.0 * sq_size));
