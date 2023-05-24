@@ -7,6 +7,18 @@
         <script src="reader.js"></script>
 
         <style>
+            *{
+                -webkit-margin-before: 0px;
+                -webkit-margin-end: 0px;
+                -webkit-margin-after: 0px;
+                -webkit-margin-start: 0px;
+
+                -webkit-padding-before: 0px;
+                -webkit-padding-end: 0px;
+                -webkit-padding-after: 0px;
+                -webkit-padding-start: 0px;
+            }
+
             html, body{
                 overflow: hidden;
             }
@@ -379,7 +391,7 @@
 
         <script>
         const max_scrolls = 4;
-        var scroll_offset = window.innerHeight;
+        var scroll_offset = document.getElementById("top-page").offsetHeight;
         var scroll_timer = null;
         var scroll_enabled = true;
         var scroll_idx = 0;
@@ -431,7 +443,7 @@
         
 
         window.addEventListener('resize', function() {
-            scroll_offset = window.innerHeight;
+            scroll_offset = document.getElementById("top-page").offsetHeight;
             page_width = window.innerWidth;
             
             scroll_idx = get_closest_scroll_idx();
