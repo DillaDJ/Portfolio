@@ -7,7 +7,7 @@
         <script src="reader.js"></script>
 
         <style>
-            html{
+            html, body{
                 overflow: hidden;
             }
             
@@ -379,11 +379,13 @@
 
         <script>
         const max_scrolls = 4;
-        
         var scroll_offset = window.innerHeight;
         var scroll_timer = null;
         var scroll_enabled = true;
         var scroll_idx = 0;
+        
+        const touch_threshold = 200;
+        var touch_start = 0;
         
         var canvas = document.createElement("canvas");
         var shaderDisplay = new GlslCanvas(canvas);
@@ -441,11 +443,11 @@
 
         window.addEventListener('scroll', function() {
             if(scroll_timer !== null) {
-                clearTimeout(scroll_timer);        
+                clearTimeout(scroll_timer);   
             }
             scroll_timer = setTimeout(function() {
                 scroll_enabled = true;
-            }, 20);
+            }, 100);
         });
         
 
@@ -496,14 +498,35 @@
         }
 
 
-        function handleScroll(event) {
+        // Scrolling override behavior
+        function touchScrollStart(event) {
             event.preventDefault();
 
-            var scroll_pos = window.pageYOffset;
-            if (!scroll_enabled) return;            
-            
+            touch_start = event.touches[0].clientY;
+        }
+
+
+        function handleTouchScroll(event) {
+            event.preventDefault();
+
+            var delta = touch_start - event.touches[0].clientY;
+            if (Math.abs(delta) > touch_threshold) {
+                scrollInDirection(delta);
+            }
+        }
+
+
+        function handleWheelScroll(event) {
+            event.preventDefault();
+
             var delta = event.deltaY || event.detail || event.wheelDelta;
-            scroll_idx += delta > 0 ? 1 : -1; // Adds scroll direction
+            scrollInDirection(delta);            
+        };
+        
+        
+        function scrollInDirection(dir) {
+            if (!scroll_enabled) return;
+            scroll_idx += dir > 0 ? 1 : -1; // Adds scroll direction
             if (scroll_idx < 0) {
                 scroll_idx = 0;
                 return;
@@ -515,8 +538,8 @@
             scroll_enabled = false;
 
             scrollToPos(scroll_idx * scroll_offset);
-        };
-
+        }
+        
 
         function scrollToPos(offset) {
             if (offset >  max_scrolls * scroll_offset) return;
@@ -566,7 +589,9 @@
         }
 
         
-        document.addEventListener("wheel", handleScroll, { passive: false });
+        document.addEventListener("wheel",      handleWheelScroll, { passive: false });
+        document.addEventListener("touchstart", touchScrollStart,  { passive: false });
+        document.addEventListener("touchmove",  handleTouchScroll, { passive: false });
         </script>
 
     </body>
