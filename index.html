@@ -37,12 +37,6 @@
                         <p class="text-sm text-gray-200 pr-2 text-indigo-200">Polkadot</p>
                     </div>
                 </a>
-
-                <a onclick="swapShaderContent(1)" class="cursor-pointer select-none">
-                    <div id="shaderPicker1" class="w-max h-6 pl-2 bg-gray-900">
-                        <p class="text-sm text-gray-200 pr-2 text-indigo-200">Placeholder</p>
-                    </div>
-                </a>
             </div>   
         </div>
                     
@@ -60,12 +54,12 @@
                     <div class="mx-8 w-72 sm:w-auto">
                         
                         <p class="text-justify text-xs md:text-sm lg:text-base">
-                            Thanks for taking a moment to visit my website, hopefully you like what you see! I was born in South Africa and I lived there until 2011, which is when my family and I moved to New Zealand. I've been programming since I was 10 years old and I have a keen interest in graphics and software in general, I think a long term goal of mine would be to work my way into becoming a technical artist but the learning curve is very steep. I've been keeping my learning in the technical art and gamedev field as a hobby and maybe someday it'll be a carreer option, but for now I'm going to keep learning. 
+                            Hi, I'm Dylan. I was born in South Africa and I lived there until 2011, which is when we moved to New Zealand. I've been programming since I was young and I have a keen interest in graphics and software development, I studied Computer Science and Linguistics at the <b>University of Auckland</b> and graduated in 2023. I found Linguistics interesting, if you're wondering about the mix, so I did it on the side. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer. Which is why I'll jump around and make projects in all sorts of engines, frameworks and programming languages. I'd like think I pick up new things quickly because I have a base understanding of common concepts between all of the tools and pick everything else up as I go. 
                             
-                            <br/>
-                            <br/>
-                            
-                            I studied Computer Science and Linguistics at the <b>University of Auckland</b> (2017 - 2023), I know it's quite the mix but I found Linguistics interesting so I did it on the side, it's great fun. I don't mind getting my hands dirty, that is to say, learning new things and adding them to my toolkit as a developer. Which is why I'll jump around and make projects in all sorts of engines, frameworks and programming languages. I'd like think I pick up new things quickly because I have a base understanding of common concepts between all of them and pick everything else up as I go. I think that's about it for me, hope you think the things on this page are interesting!
+                            </br>
+                            </br>
+
+                            Thank you for your time, I hope you think the this page or the things on it are interesting!
                         </p>
                         
                     </div>
@@ -191,7 +185,7 @@
                     <div class="inline-block relative w-72 mr-10 rounded-md bg-gray-900 bg-opacity-70"></div>
                     <div class="inline-block relative w-72 mr-10 rounded-md bg-gray-900 bg-opacity-70"></div>
 
-                    <!-- Something Else -->
+                    <!-- Overlay Editor -->
                     <div class="inline-block relative w-72 mr-10 rounded-md bg-gray-600">
                         <div class="absolute -left-1 pl-6 pt-2 pr-2 pb-2 mt-5 rounded-r shadow bg-indigo-600">
                             <img class="w-12" src="media/godot.png">
@@ -212,12 +206,15 @@
 
                         <div class="p-4 mb-2 bg-gray-600">
                             <p>
-                                An application made in godot to help streamers create overlays for their streams without having to use any code, I made an engine extension and wrote a gif decoder for this one. I plan on releasing more updates for it too
+                                An application (with a temporary name) made in godot to help streamers create overlays for their streams, with an engine extension and a gif decoder. I plan on writing updates for it.
                             
                                 </br>
                                 </br>
+                                </br>
+                                
+                                You can find it <a class="text-blue-400" href="https://github.com/DillaDJ/OverlayEditor"><b>here</b></a>
 
-                                You can use it soon...
+                                
                             </p>
                         </div>
                     </div>
@@ -249,7 +246,7 @@
                         <!-- Description -->
                         <div class="p-4 mb-2 bg-gray-600">
                             <p>
-                                I also made this website! I wrote my own HTML and JavaScript but I'm using TailWind for CSS. I might try using a JavaScript framework like Astro and port this site to it at some point but I'll stay plain for now.
+                                I also made this website! I wrote my own HTML and JavaScript but I'm using TailWind for CSS. I plan on porting it to a framework to make the front end easier to deal with at some point though.
                             </p>
                         </div>
                     </div>
@@ -271,13 +268,13 @@
 
                         <div class="p-4 mb-2 bg-gray-600">
                             <p>
-                                A networked Card Game based off of a game called scum (as it's called in NZ, Tycoon in Persona 5) to learn Godot networking. As of right now, all the gameplay is implemented but I still want to polish and even try writing shaders for it
+                                A networked Card Game based off of a game called scum (as it's called in NZ, Tycoon in Persona 5) to learn Godot networking. I want to visually polish it in the future and add a link to play it below but the source code is available for now.
                             </p>
 
                             </br>
                             
                             <p>
-                                You can play it soon... <!--<a class="text-blue-400" href="tycoon/Tycoon.html"><b>here</b></a>-->
+                                You can find it <a class="text-blue-400" href="https://github.com/DillaDJ/GodotCards.html"><b>here</b></a>
                             </p>
                         </div>
                     </div>
@@ -331,9 +328,10 @@
 
                         <div class="p-4 mb-2 bg-gray-600">
                             <p>
-                                A gamejam project I made in 3 days, I made everything myself (I'm not an artist so go easy please) except for the sound - I used royalty free sounds and music
+                                A gamejam project I made in three days, I made everything myself (I'm not an artist though) except for the sound - I used royalty free sounds and music
                             </p>
 
+                            <br/>
                             <br/>
                             <br/>
 
@@ -468,7 +466,7 @@
         
 
         function swapShaderContent(idx) {
-            var files = ["dots.hlsl", "test.hlsl"];
+            var files = ["dots.hlsl"];
             
             for (var i = 0; i < files.length; i++) {
                 var shaderPicker = document.getElementById("shaderPicker" + i);
